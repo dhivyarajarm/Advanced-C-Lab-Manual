@@ -16,12 +16,45 @@ Else
  
 Program:
 
-//type your code here
+#include <stdio.h>
+
+struct eligible {
+    int age;
+    char n[50];
+};
+
+int main() {
+    struct eligible e;
+
+    // Input age and name
+    printf("Enter age: ");
+    scanf("%d", &e.age);
+
+    printf("Enter name: ");
+    scanf("%s", e.n);
+
+    // Check vaccine eligibility
+    if (e.age <= 6) {
+        printf("Vaccine Eligibility: No\n");
+    } else {
+        printf("Vaccine Eligibility: Yes\n");
+    }
+
+    // Print details
+    printf("Age: %d\n", e.age);
+    printf("Name: %s\n", e.n);
+
+    return 0;
+}
 
 
 Output:
 
-//paste your output here
+Enter age: 5
+Enter name: Arun
+Vaccine Eligibility: No
+Age: 5
+Name: Arun
 
 
 Result:
@@ -44,7 +77,33 @@ Algorithm:
  
 Program:
 
-//type your code here
+#include <stdio.h>
+
+struct numbers {
+    int a;
+    int b;
+};
+
+int add(struct numbers n) {
+    return n.a + n.b;
+}
+
+int main() {
+    struct numbers n;
+    int result;
+
+    printf("Enter value of a: ");
+    scanf("%d", &n.a);
+
+    printf("Enter value of b: ");
+    scanf("%d", &n.b);
+
+    result = add(n);
+
+    printf("Sum = %d\n", result);
+
+    return 0;
+}
 
 
 
@@ -52,7 +111,9 @@ Program:
 Output:
 
 
-//paste your output here
+Enter value of a: 10
+Enter value of b: 20
+Sum = 30
 
 
 
@@ -86,7 +147,31 @@ Use scanf to input the file name into the name array.
  
 Program:
 
-//type your code here
+#include <stdio.h>
+
+int main() {
+    FILE *p;
+    char name[100];
+
+    printf("Enter file name: ");
+    scanf("%s", name);
+
+    p = fopen(name, "w");
+
+    if (p == NULL) {
+        printf("Error: File could not be created.\n");
+        return 1;
+    }
+
+    printf("File '%s' has been created successfully.\n", name);
+    printf("File opened successfully.\n");
+
+    fclose(p);
+
+    printf("File closed successfully.\n");
+
+    return 0;
+}
 
 
 
@@ -94,7 +179,10 @@ Program:
 Output:
 
 
-//paste your output here
+Enter file name: sample.txt
+File 'sample.txt' has been created successfully.
+File opened successfully.
+File closed successfully.
 
 
 
@@ -133,15 +221,57 @@ Use scanf to input the file name into the name array and the number of strings i
  
 Program:
 
-//type your code here
+#include <stdio.h>
 
+int main() {
+    FILE *p;
+    char name[100];
+    char text[100];
+    int num, i;
+
+    printf("Enter file name: ");
+    scanf("%s", name);
+
+    printf("Enter number of strings: ");
+    scanf("%d", &num);
+
+    p = fopen(name, "w");
+
+    if (p == NULL) {
+        printf("Error: File could not be opened.\n");
+        return 1;
+    }
+
+    printf("File opened successfully.\n");
+
+    // Input strings and write them to the file
+    for (i = 0; i < num; i++) {
+        printf("Enter string %d: ", i + 1);
+        scanf("%s", text);
+
+        fputs(text, p);
+        fputs("\n", p);
+    }
+
+    fclose(p);
+
+    printf("Data has been added successfully.\n");
+
+    return 0;
+}
 
 
 
 Output:
 
 
-//paste your output here
+Enter file name: sample.txt
+Enter number of strings: 3
+File opened successfully.
+Enter string 1: Hello
+Enter string 2: Welcome
+Enter string 3: Cprogram
+Data has been added successfully.
 
 
 
@@ -187,7 +317,53 @@ Algorithm:
 
 Program:
 
-//type your code here
+#include <stdio.h>
+#include <stdlib.h>
+
+struct subject {
+    char name[50];
+    int marks;
+};
+
+int main() {
+    int n, i;
+    struct subject *s;
+
+    // Input number of subjects
+    printf("Enter number of subjects: ");
+    scanf("%d", &n);
+
+    // Dynamically allocate memory
+    s = (struct subject *)malloc(n * sizeof(struct subject));
+
+    // Check memory allocation
+    if (s == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    // Input subject details
+    for (i = 0; i < n; i++) {
+        printf("Enter subject name: ");
+        scanf("%s", s[i].name);
+
+        printf("Enter marks: ");
+        scanf("%d", &s[i].marks);
+    }
+
+    // Display subject details
+    printf("\nSubject Details:\n");
+
+    for (i = 0; i < n; i++) {
+        printf("Subject: %s\n", s[i].name);
+        printf("Marks: %d\n", s[i].marks);
+    }
+
+    // Free allocated memory
+    free(s);
+
+    return 0;
+}
 
 
 
@@ -195,7 +371,24 @@ Program:
 Output:
 
 
-//paste your output here
+Enter number of subjects: 3
+
+Enter subject name: Maths
+Enter marks: 90
+
+Enter subject name: Physics
+Enter marks: 85
+
+Enter subject name: Chemistry
+Enter marks: 88
+
+Subject Details:
+Subject: Maths
+Marks: 90
+Subject: Physics
+Marks: 85
+Subject: Chemistry
+Marks: 88
 
 
 
