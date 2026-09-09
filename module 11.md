@@ -12,10 +12,36 @@ Algorithm:
 5.	Call the max_of_four function with the input integers and store the result in the greater variable
  
 Program:
-//type your code here
+```
+#include <stdio.h>
 
+int max_of_four(int n1, int n2, int n3, int n4)
+{
+    if (n1 >= n2 && n1 >= n3 && n1 >= n4)
+        return n1;
+    else if (n2 >= n1 && n2 >= n3 && n2 >= n4)
+        return n2;
+    else if (n3 >= n1 && n3 >= n2 && n3 >= n4)
+        return n3;
+    else
+        return n4;
+}
+
+int main()
+{
+    int n1, n2, n3, n4, greater;
+
+    scanf("%d %d %d %d", &n1, &n2, &n3, &n4);
+
+    greater = max_of_four(n1, n2, n3, n4);
+
+    printf("%d", greater);
+
+    return 0;
+}
+```
 Output:
-//paste your output here
+25
 
 Result:
 Thus, the program  that create a function to find the greatest number is verified successfully.
@@ -36,11 +62,51 @@ Algorithm:
 7.	Call the calculate_the_max function with input values.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
 
+void calculate_the_max(int n, int k)
+{
+    int a = 0, o = 0, x = 0;
+    int i, j, value;
+
+    for (i = 1; i <= n; i++)
+    {
+        for (j = i + 1; j <= n; j++)
+        {
+            value = i & j;
+            if (value < k && value > a)
+                a = value;
+
+            value = i | j;
+            if (value < k && value > o)
+                o = value;
+
+            value = i ^ j;
+            if (value < k && value > x)
+                x = value;
+        }
+    }
+
+    printf("%d\n%d\n%d\n", a, o, x);
+}
+
+int main()
+{
+    int n, k;
+
+    scanf("%d %d", &n, &k);
+
+    calculate_the_max(n, k);
+
+    return 0;
+}
+```
 Output:
-//paste your output here
 
+2
+3
+3
 Result:
 Thus, the program to print the maximum values for the AND, OR and XOR comparisons
 is verified successfully.
@@ -59,10 +125,39 @@ Algorithm:
 5.	Use a for loop to iterate over the queries.
  
 Program:
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    int noshel, noque;
+    int shelarr[100][100];
+    int nobookarr[100] = {0};
+    int k, c;
+    int q, x, y;
+
+    scanf("%d %d", &noshel, &noque);
+
+    for (q = 0; q < noque; q++) {
+        scanf("%d %d %d", &c, &x, &y);
+
+        if (c == 1) {
+            shelarr[x][nobookarr[x]] = y;
+            nobookarr[x]++;
+        }
+        else if (c == 2) {
+            printf("%d\n", shelarr[x][y]);
+        }
+        else if (c == 3) {
+            printf("%d\n", nobookarr[x]);
+        }
+    }
+
+    return 0;
+}
+```
 Output:
-//paste your output here
+2
+20
 
 
 Result:
@@ -86,10 +181,27 @@ Algorithm:
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    int n, i, sum = 0;
+    int a[100];
+
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+        sum = sum + a[i];
+    }
+
+    printf("%d", sum);
+
+    return 0;
+}
+```
 Output:
-//paste your output here
+150
 
  
 
@@ -120,10 +232,28 @@ o	If a character is not a space, it may belong to a word. If it's the first non-
 
 
 Program:
-//type your code here
+```
+#include <stdio.h>
 
+int main() {
+    char str[200];
+    int i, count = 0;
+
+    fgets(str, sizeof(str), stdin);
+
+    for (i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ' && (i == 0 || str[i - 1] == ' ')) {
+            count++;
+        }
+    }
+
+    printf("%d", count);
+
+    return 0;
+}
+```
 Output:
-//paste your output here
+5
 
 
 
