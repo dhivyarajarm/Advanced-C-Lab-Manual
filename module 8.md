@@ -15,16 +15,57 @@ Algorithm:
 4.	Exit the program.
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    int n;
+
+    scanf("%d", &n);
+
+    switch (n) {
+        case 5:
+            printf("seventy one");
+            break;
+        case 6:
+            printf("seventy two");
+            break;
+        case 7:
+            printf("seventy three");
+            break;
+        case 8:
+            printf("seventy four");
+            break;
+        case 9:
+            printf("seventy five");
+            break;
+        case 10:
+            printf("seventy six");
+            break;
+        case 11:
+            printf("seventy seven");
+            break;
+        case 12:
+            printf("seventy eight");
+            break;
+        case 13:
+            printf("seventy nine");
+            break;
+        default:
+            printf("Greater than 13");
+    }
+
+    return 0;
+}
+```
+
 
 
 
 
 Output:
 
-
-//paste your output here
+seventy four
 
 
 
@@ -46,16 +87,37 @@ Algorithm:
 6.	End
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    char a[50];
+    int i, h, c;
 
+    scanf("%s", a);
+
+    for (h = 0; h <= 3; h++) {
+        c = 0;
+
+        for (i = 0; a[i] != '\0'; i++) {
+            if (a[i] - '0' == h)
+                c++;
+        }
+
+        printf("%d ", c);
+    }
+
+    return 0;
+}
+
+```
 
 
 
 Output:
 
+1 1 1 0
 
-//paste your output here
 
 
 
@@ -83,16 +145,76 @@ Free the memory allocated for each string in s Free the memory allocated for s
 7.	End
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-//type your code here
+void swap(char *a, char *b) {
+    char temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void permute(char *str, int l, int r) {
+    int i;
+
+    if (l == r) {
+        printf("%s\n", str);
+        return;
+    }
+
+    for (i = l; i <= r; i++) {
+        swap(&str[l], &str[i]);
+        permute(str, l + 1, r);
+        swap(&str[l], &str[i]);
+    }
+}
+
+int main() {
+    char **s;
+    int n, i;
+
+    scanf("%d", &n);
+
+    s = malloc(n * sizeof(char *));
+
+    for (i = 0; i < n; i++) {
+        s[i] = malloc(50 * sizeof(char));
+        scanf("%s", s[i]);
+    }
+
+    for (i = 0; i < n; i++) {
+        printf("Permutations of %s:\n", s[i]);
+        permute(s[i], 0, strlen(s[i]) - 1);
+    }
+
+    for (i = 0; i < n; i++)
+        free(s[i]);
+
+    free(s);
+
+    return 0;
+}
+```
+
 
 
 
 
 Output:
 
+Permutations of ABC:
+ABC
+ACB
+BAC
+BCA
+CBA
+CAB
+Permutations of XY:
+XY
+YX
 
-//paste your output here
 
 
 
@@ -116,8 +238,39 @@ Algorithm:
 7.	End
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    int n, i, j, min, len;
+
+    scanf("%d", &n);
+
+    len = n * 2 - 1;
+
+    for (i = 0; i < len; i++) {
+        for (j = 0; j < len; j++) {
+
+            min = i;
+
+            if (j < min)
+                min = j;
+
+            if (len - 1 - i < min)
+                min = len - 1 - i;
+
+            if (len - 1 - j < min)
+                min = len - 1 - j;
+
+            printf("%d ", n - min);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+```
+
 
 
 
@@ -125,7 +278,11 @@ Program:
 Output:
 
 
-//paste your output here
+3 3 3 3 3
+3 2 2 2 3
+3 2 1 2 3
+3 2 2 2 3
+3 3 3 3 3
 
 
 
@@ -155,16 +312,33 @@ o	Call the square() function and display the result.
 5.	End.
 
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int square() {
+    int n;
 
+    scanf("%d", &n);
 
+    return n * n;
+}
+
+int main() {
+    int result;
+
+    result = square();
+
+    printf("%d", result);
+
+    return 0;
+}
+
+```
 
 
 Output:
 
-
-//paste your output here
+25
 
 
 
