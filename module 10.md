@@ -9,12 +9,56 @@ Algorithm:
 4.	Call the search function and perform other linked list operations as needed.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct Node {
+    char data;
+    struct Node *next;
+};
 
+int search(struct Node *head, char key) {
+    while (head != NULL) {
+        if (head->data == key)
+            return 1;
+        head = head->next;
+    }
+    return 0;
+}
+
+int main() {
+    struct Node *head = NULL;
+    struct Node *n1, *n2, *n3;
+    char key;
+
+    n1 = malloc(sizeof(struct Node));
+    n2 = malloc(sizeof(struct Node));
+    n3 = malloc(sizeof(struct Node));
+
+    n1->data = 'A';
+    n1->next = n2;
+
+    n2->data = 'B';
+    n2->next = n3;
+
+    n3->data = 'C';
+    n3->next = NULL;
+
+    head = n1;
+
+    scanf(" %c", &key);
+
+    if (search(head, key))
+        printf("Character found");
+    else
+        printf("Character not found");
+
+    return 0;
+}
+```
 Output:
-
-//paste your output here
+Character found
 
 
 
@@ -33,12 +77,62 @@ Algorithm:
 4.	Call the insert function and perform other linked list operations as needed.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct Node {
+    char data;
+    struct Node *next;
+};
 
+void insert(struct Node **head, char ch) {
+    struct Node *newNode;
+    struct Node *temp;
+
+    newNode = malloc(sizeof(struct Node));
+    newNode->data = ch;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        temp = *head;
+
+        while (temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = newNode;
+    }
+}
+
+void display(struct Node *head) {
+    while (head != NULL) {
+        printf("%c ", head->data);
+        head = head->next;
+    }
+}
+
+int main() {
+    struct Node *head = NULL;
+    int n, i;
+    char ch;
+
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        scanf(" %c", &ch);
+        insert(&head, ch);
+    }
+
+    display(head);
+
+    return 0;
+}
+```
 Output:
+A B C
 
-//paste your output here
 
  
 Result:
@@ -57,12 +151,42 @@ Algorithm:
 4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct Node {
+    char data;
+    struct Node *next;
+};
 
+int main() {
+    struct Node *head, *temp;
+    
+    head = malloc(sizeof(struct Node));
+    head->data = 'A';
+    
+    head->next = malloc(sizeof(struct Node));
+    head->next->data = 'B';
+    
+    head->next->next = malloc(sizeof(struct Node));
+    head->next->next->data = 'C';
+    
+    head->next->next->next = NULL;
+
+    temp = head;
+
+    while (temp != NULL) {
+        printf("%c ", temp->data);
+        temp = temp->next;
+    }
+
+    return 0;
+}
+```
 Output:
 
-//paste your output here
+A B C
 
 
 Result:
@@ -82,12 +206,59 @@ Algorithm:
 5.	Set the new node's prev pointer to the last node and update the last node's next pointer to the new node.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct Node {
+    char data;
+    struct Node *prev;
+    struct Node *next;
+};
 
+void insert(struct Node **head, char value) {
+    struct Node *newNode, *temp;
+
+    newNode = malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->prev = NULL;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+    } else {
+        temp = *head;
+
+        while (temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+}
+
+void display(struct Node *head) {
+    while (head != NULL) {
+        printf("%c ", head->data);
+        head = head->next;
+    }
+}
+
+int main() {
+    struct Node *head = NULL;
+
+    insert(&head, 'A');
+    insert(&head, 'B');
+    insert(&head, 'C');
+
+    display(head);
+
+    return 0;
+}
+```
 Output:
+A B C
 
-//paste your output here
 
 
 Result:
@@ -124,13 +295,83 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct Node {
+    int data;
+    struct Node *next;
+};
 
+void deleteNode(struct Node **head, int value) {
+    struct Node *temp = *head;
+    struct Node *prev = NULL;
+
+    if (*head == NULL) {
+        printf("List is empty");
+        return;
+    }
+
+    if (temp->data == value) {
+        *head = temp->next;
+        free(temp);
+        return;
+    }
+
+    while (temp != NULL && temp->data != value) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    if (temp == NULL) {
+        printf("Element not found");
+        return;
+    }
+
+    prev->next = temp->next;
+    free(temp);
+}
+
+void display(struct Node *head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+}
+
+int main() {
+    struct Node *head = NULL;
+    struct Node *n1, *n2, *n3;
+    int value;
+
+    n1 = malloc(sizeof(struct Node));
+    n2 = malloc(sizeof(struct Node));
+    n3 = malloc(sizeof(struct Node));
+
+    n1->data = 10;
+    n1->next = n2;
+
+    n2->data = 20;
+    n2->next = n3;
+
+    n3->data = 30;
+    n3->next = NULL;
+
+    head = n1;
+
+    scanf("%d", &value);
+
+    deleteNode(&head, value);
+
+    display(head);
+
+    return 0;
+}
+```
 Output:
 
-//paste your output here
-
+10 30
 
 
 
